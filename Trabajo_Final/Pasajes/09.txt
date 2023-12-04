@@ -1,0 +1,8 @@
+Nombre del cliente: Gian 
+Apellido del cliente: Levano
+DNI del cliente: 12345678
+Punto de partida: Lima
+Destino: Chincha
+Asiento: 9
+Precio: 22.0
+Fecha y hora de la venta: 03-12-2023 21:57:16

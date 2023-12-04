@@ -1,0 +1,8 @@
+Nombre del cliente: Adrian 
+Apellido del cliente: Romani
+DNI del cliente: 56789123
+Punto de partida: Lima
+Destino: Chincha
+Asiento: 3
+Precio: 22.0
+Fecha y hora de la venta: 03-12-2023 22:04:17
