@@ -70,7 +70,7 @@ public class test {
                     nAsiento[29], nAsiento[30], nAsiento[31], nAsiento[32], nAsiento[33], nAsiento[34],
                     nAsiento[35], nAsiento[36], nAsiento[37], nAsiento[38], nAsiento[39], nAsiento[40],
                     nAsiento[41], nAsiento[42], nAsiento[43], nAsiento[44], nAsiento[45], nAsiento[46],
-                    nAsiento[47], nAsiento[48]);
+                    nAsiento[47]);
 
             String input = JOptionPane.showInputDialog(menu); // lo ingresado se guarda en input, que ayudara para  entrar dentr del switch
             if (input == null) {                                 
@@ -88,7 +88,7 @@ public class test {
             switch (opcion) {
                 case 1 -> {
                     try {
-                        String nombre = JOptionPane.showInputDialog("Ingrese sus nombres");
+                        String nombre = JOptionPane.showInputDialog("Ingrese sus nombres");       // añadir centinela para cuando quiera cancelar el proceso
                         String apellidos = JOptionPane.showInputDialog("Ingrese sus apellidos");
 
                         String dni;
