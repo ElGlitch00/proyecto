@@ -20,13 +20,13 @@ import java.time.format.DateTimeFormatter;   // Darle un formato a la hora
 public class test {
     public static void main(String[] args) {
 
-        Terminal terminal = new Terminal();      
-        String[] busarray = new String[49];
-        for (int i = 0; i < 49; i++) {
-            busarray[i] = String.format("%02d", i);
+        Terminal terminal = new Terminal();            // Crea la variable terminal que servira para llamar a metodos 
+        String[] nAsiento = new String[48];            // Declaramos nAsiento para que guarde el numero de asiento  que se mostrará dentro de bus
+        for (int i = 0; i < 48; i++) {
+            nAsiento[i] = String.format("%02d", i);
         }
 
-        Pasajero[] pasajeros = new Pasajero[50];
+        Pasajero[] pasajeros = new Pasajero[48];  // creamos un array de pasajeros  con un limite de 48 igual que los asientos disponibles en el us
 
         int opcion;
         String menu = """
@@ -37,6 +37,7 @@ public class test {
                 4. Registrar boleto de texto
                 5. Salir
                 """;
+
         do {
 
             String bus = """
@@ -60,27 +61,27 @@ public class test {
                      [%s] [%s]    [%s] [%s]
                     #################
                          """;
-            String busString = String.format(bus, busarray[0], busarray[1], busarray[2], busarray[3],
-                    busarray[4],
-                    busarray[5], busarray[6], busarray[7], busarray[8], busarray[9], busarray[10],
-                    busarray[11], busarray[12], busarray[13], busarray[14], busarray[15], busarray[16],
-                    busarray[17], busarray[18], busarray[19], busarray[20], busarray[21], busarray[22],
-                    busarray[23], busarray[24], busarray[25], busarray[26], busarray[27], busarray[28],
-                    busarray[29], busarray[30], busarray[31], busarray[32], busarray[33], busarray[34],
-                    busarray[35], busarray[36], busarray[37], busarray[38], busarray[39], busarray[40],
-                    busarray[41], busarray[42], busarray[43], busarray[44], busarray[45], busarray[46],
-                    busarray[47], busarray[48]);
+            String busString = String.format(bus, nAsiento[0], nAsiento[1], nAsiento[2], nAsiento[3],
+                    nAsiento[4],
+                    nAsiento[5], nAsiento[6], nAsiento[7], nAsiento[8], nAsiento[9], nAsiento[10],
+                    nAsiento[11], nAsiento[12], nAsiento[13], nAsiento[14], nAsiento[15], nAsiento[16],
+                    nAsiento[17], nAsiento[18], nAsiento[19], nAsiento[20], nAsiento[21], nAsiento[22],
+                    nAsiento[23], nAsiento[24], nAsiento[25], nAsiento[26], nAsiento[27], nAsiento[28],
+                    nAsiento[29], nAsiento[30], nAsiento[31], nAsiento[32], nAsiento[33], nAsiento[34],
+                    nAsiento[35], nAsiento[36], nAsiento[37], nAsiento[38], nAsiento[39], nAsiento[40],
+                    nAsiento[41], nAsiento[42], nAsiento[43], nAsiento[44], nAsiento[45], nAsiento[46],
+                    nAsiento[47], nAsiento[48]);
 
-            String input = JOptionPane.showInputDialog(menu);
-            if (input == null) {
+            String input = JOptionPane.showInputDialog(menu); // lo ingresado se guarda en input, que ayudara para  entrar dentr del switch
+            if (input == null) {                                 
                 // El usuario presionó "Cancelar"
                 opcion = 5; // Esto es para que te bote del sistema
             } else {
                 try {
-                    opcion = Integer.parseInt(input);
-                } catch (NumberFormatException e) { // error por ingresar letras dentro de opcion
+                    opcion = Integer.parseInt(input);       // hace conversion de input a entero  dentro de opcion 
+                } catch (NumberFormatException e) {         // error por ingresar letras dentro de opcion
                     // El usuario ingresó letras
-                    JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, ingrese un número.");
+                    JOptionPane.showMessageDialog(null, "Entrada inválida.");
                     opcion = 0; // Da opcion a repetir el ingreso de opcion
                 }
             }
@@ -174,8 +175,8 @@ public class test {
                         if (nuevoPasajero != null) {
                             terminal.crearArchivoPasajero(nuevoPasajero);
                             JOptionPane.showMessageDialog(null, "Asiento reservado con éxito");
-                            busarray[Integer.parseInt(asientoInput)] = "XX"; // Marca el asiento como ocupado en
-                                                                             // busarray
+                            nAsiento[Integer.parseInt(asientoInput)] = "XX"; // Marca el asiento como ocupado en
+                                                                             // nAsiento
                         }
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(null, "DNI debe ser un número", "Error",
@@ -229,7 +230,7 @@ public class test {
                 }
                 case 3 -> {
 
-                    busString = String.format(bus, (Object[]) busarray);
+                    busString = String.format(bus, (Object[]) nAsiento);
                     JOptionPane.showMessageDialog(null, busString);
                 }
                 case 4 -> {
@@ -297,8 +298,8 @@ public class test {
                                     JOptionPane.showMessageDialog(null,
                                             "Pasajero registrado con éxito.\n" + "fechaVenta: "
                                                     + fechaVenta + "\n" + "precio: " + precio);
-                                    busarray[Integer.parseInt(asiento)] = "XX"; // Marca el asiento como ocupado en
-                                                                                // busarray
+                                    nAsiento[Integer.parseInt(asiento)] = "XX"; // Marca el asiento como ocupado en
+                                                                                // nAsiento
                                     pasajeros[Integer.parseInt(asiento)] = nuevoPasajero; // Añade el pasajero al array
                                                                                           // pasajeros
                                 }
@@ -322,7 +323,7 @@ public class test {
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                 }
                 default -> {
-                    JOptionPane.showMessageDialog(null, "Opcion incorrecta");
+                    JOptionPane.showMessageDialog(null, "Ingresa una opcion del [1-5]");
                 }
             }
         } while (opcion != 5);
