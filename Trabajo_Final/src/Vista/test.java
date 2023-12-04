@@ -5,22 +5,22 @@ import javax.swing.JOptionPane;
 import Controlador.Terminal;
 import Modelo.Pasajero;
 
-import java.awt.HeadlessException;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.awt.HeadlessException;           // Ocurre cuando se llama al código que depende de un teclado, una pantalla o un mouse en un entorno que no admite un teclado, una pantalla o un mouse.
+import java.io.IOException;                  // excepcion de entrada o salida 
+import java.io.BufferedReader;               // Sirve para la lectura del variables dentro del texto  haciendo uso del Buffer
+import java.io.File;                         // Permite ubicar el archivo dentro de nuestro codigo
+import java.io.FileReader;                   // Sirve para la lectura del archivo de texto
+import java.time.LocalDateTime;              // Obtener la hora local
+import java.time.format.DateTimeFormatter;   // Darle un formato a la hora
 
 /**
  * 
- * @author G15br
+ * @author ElgLITCH
  */
 public class test {
     public static void main(String[] args) {
 
-        Terminal terminal = new Terminal();
+        Terminal terminal = new Terminal();      
         String[] busarray = new String[49];
         for (int i = 0; i < 49; i++) {
             busarray[i] = String.format("%02d", i);
