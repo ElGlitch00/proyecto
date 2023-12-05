@@ -16,7 +16,7 @@ import Modelo.Pasajero;
 
 /**
  *
- * @author G15br
+ * @author ElgLITCH
  */
 public class Terminal {
     private Pasajero[] pasajeros = new Pasajero[48]; // objeto como atributo de otro objeto
