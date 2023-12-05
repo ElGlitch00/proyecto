@@ -64,7 +64,7 @@ public class test {
                          """;
 
                          // busString es la plantilla para los asientos con los asientos ya ocupados o vacios
-                         
+
             String busString = String.format(bus, nAsiento[0], nAsiento[1], nAsiento[2], nAsiento[3],
                     nAsiento[4],
                     nAsiento[5], nAsiento[6], nAsiento[7], nAsiento[8], nAsiento[9], nAsiento[10],
@@ -178,8 +178,7 @@ public class test {
 
                         if (nuevoPasajero != null) {
                             terminal.crearArchivoPasajero(nuevoPasajero);
-                            JOptionPane.showMessageDialog(null, "Asiento reservado con éxito", "Éxito",
-                                    JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Asiento reservado con éxito");
                             nAsiento[Integer.parseInt(asientoInput)] = "XX"; // Marca el asiento como ocupado en
                                                                              // nAsiento
                         }
