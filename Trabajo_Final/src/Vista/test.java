@@ -171,7 +171,7 @@ public class test {
                             terminal.crearArchivoPasajero(nuevoPasajero);
                             JOptionPane.showMessageDialog(null, "Asiento reservado con éxito");
                             nAsiento[Integer.parseInt(asientoInput)] = "XX"; // Marca el asiento como ocupado en
-                                                                             // nAsiento
+                            pasajeros[Integer.parseInt(asientoInput)] = nuevoPasajero;                                                    // nAsiento
                         }
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(null, "DNI debe ser un número", "Error",
@@ -230,7 +230,7 @@ public class test {
                 }
                 case 4 -> {   
                     try {
-                        File folder = new File("Trabajo_Final/pasajes/");  //crea el directorio pasajes
+                        File folder = new File("Trabajo_Final/Pasajes/");  //crea el directorio pasajes
                         File[] listOfFiles = folder.listFiles();                    //genera una lista de archivos
                         StringBuilder fileList = new StringBuilder();               // crea un string builder con los nombres de los archivos
 
@@ -246,7 +246,7 @@ public class test {
 
                         String asiento = JOptionPane.showInputDialog(
                                 fileList + "Ingrese numero de su pasaje:");
-                        String fileName = "Trabajo_Final/pasajes/" + asiento + ".txt";
+                        String fileName = "Trabajo_Final/Pasajes/" + asiento + ".txt";
                         String nombre = null;
                         String apellidos = null;
                         String dni = null;
