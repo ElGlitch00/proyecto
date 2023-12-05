@@ -94,9 +94,9 @@ public class Terminal {
         do {
             asiento = Integer.parseInt(nuevoPasajero.getAsiento());
             pasaje = String.format("%02d", asiento);
-        } while (new File("Pasajes/" + pasaje + ".txt").exists());
+        } while (new File("Trabajo_Final/Pasajes/" + pasaje + ".txt").exists());
 
-        File dir = new File("Pasajes/");
+        File dir = new File("Trabajo_Final/Pasajes/");
         if (!dir.exists()) {
             dir.mkdirs();
         }

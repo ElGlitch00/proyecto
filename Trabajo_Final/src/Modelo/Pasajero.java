@@ -65,11 +65,6 @@ public class Pasajero {
         return this.destino;
     }
 
-    @Override
-    public String toString() {
-        return "Pasajero{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", asiento=" + asiento
-                + ", puntoPartida=" + puntoPartida + ", destino=" + destino + '}';
-    }
 
     public void setPrecio(double double1) {
     }
