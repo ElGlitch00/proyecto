@@ -22,6 +22,7 @@ public class test {
 
         Terminal terminal = new Terminal();            // Crea la variable terminal que servira para llamar a metodos 
         String[] nAsiento = new String[48];            // Declaramos nAsiento para que guarde el numero de asiento  que se mostrará dentro de bus
+      
         for (int i = 0; i < 48; i++) {
             nAsiento[i] = String.format("%02d", i);
         }
@@ -32,23 +33,23 @@ public class test {
         String menu = """
                 Menu opciones
                 1. Registrar pasajero
-                2. Verificar boleto
+                2. Verificar asiento
                 3. Mostrar asientos
                 4. Registrar boleto de texto
                 5. Salir
                 """;
 
         do {
-
+                                 // bus es la plantilla para los asientos
             String bus = """
                     #################
                           PRIMER PISO
                     #################
                      [%s] [%s]    [%s] [%s]
                      [%s] [%s]    [%s] [%s]
+                     [%s] [%s]    [%s] [%s]    
                      [%s] [%s]    [%s] [%s]
-                     [%s] [%s]    [%s] [%s]
-                     [%s] [%s]    [%s] [%s]
+                     [%s] [%s]    [%s] [%s]    
                     #################
                           SEGUNDO PISO
                     #################
@@ -61,16 +62,10 @@ public class test {
                      [%s] [%s]    [%s] [%s]
                     #################
                          """;
-            String busString = String.format(bus, nAsiento[0], nAsiento[1], nAsiento[2], nAsiento[3],
-                    nAsiento[4],
-                    nAsiento[5], nAsiento[6], nAsiento[7], nAsiento[8], nAsiento[9], nAsiento[10],
-                    nAsiento[11], nAsiento[12], nAsiento[13], nAsiento[14], nAsiento[15], nAsiento[16],
-                    nAsiento[17], nAsiento[18], nAsiento[19], nAsiento[20], nAsiento[21], nAsiento[22],
-                    nAsiento[23], nAsiento[24], nAsiento[25], nAsiento[26], nAsiento[27], nAsiento[28],
-                    nAsiento[29], nAsiento[30], nAsiento[31], nAsiento[32], nAsiento[33], nAsiento[34],
-                    nAsiento[35], nAsiento[36], nAsiento[37], nAsiento[38], nAsiento[39], nAsiento[40],
-                    nAsiento[41], nAsiento[42], nAsiento[43], nAsiento[44], nAsiento[45], nAsiento[46],
-                    nAsiento[47]);
+
+                         // busString es la plantilla para los asientos con los asientos ya ocupados o vacios
+
+            String busString = String.format(bus,  (Object[]) nAsiento);
 
             String input = JOptionPane.showInputDialog(menu); // lo ingresado se guarda en input, que ayudara para  entrar dentr del switch
             if (input == null) {                                 
@@ -95,6 +90,7 @@ public class test {
                         int dniNumero;
                         do {
                             dni = JOptionPane.showInputDialog("Ingrese su DNI");
+                            
                             try {
                                 dniNumero = Integer.parseInt(dni);
                                 if (dni.length() != 8) {
@@ -111,23 +107,24 @@ public class test {
                         } while (true);
 
                         StringBuilder menu_origen = new StringBuilder();
-                        menu_origen.append("Seleccione su punto de partida\n")
+                        menu_origen.append("Seleccione su punto de partida\n") //  
                                 .append("1.Lima\n")
                                 .append("2.Cañete\n")
                                 .append("3.Chincha\n");
-                        String opcion_origen = JOptionPane.showInputDialog(menu_origen.toString());
-                        int opcion_partida = Integer.parseInt(opcion_origen);
+                        String opcion_origen = JOptionPane.showInputDialog(menu_origen);
+                        
                         String fechaPartida = JOptionPane.showInputDialog("Ingrese la fecha de partida (dd/MM/yyyy)");
-                        switch (opcion_partida) {
-                            case 1 -> {
+                        
+                        switch (opcion_origen) {
+                            case "1" -> {
                                 JOptionPane.showMessageDialog(null, "Haz seleccionado Lima");
                                 terminal.registrarViaje("Lima", null, fechaPartida);
                             }
-                            case 2 -> {
+                            case "2" -> {
                                 JOptionPane.showMessageDialog(null, "Haz seleccionado Cañete");
                                 terminal.registrarViaje("Cañete", null, fechaPartida);
                             }
-                            case 3 -> {
+                            case "3" -> {
                                 JOptionPane.showMessageDialog(null, "Haz seleccionado Chincha");
                                 terminal.registrarViaje("Chincha", null, fechaPartida);
                             }
@@ -141,7 +138,7 @@ public class test {
                                 .append("1.Lima\n")
                                 .append("2.Cañete\n")
                                 .append("3.Chincha\n");
-                        String opcion_destino = JOptionPane.showInputDialog(menu_destino.toString());
+                        String opcion_destino = JOptionPane.showInputDialog(menu_destino); //Solo lee string
 
                         switch (opcion_destino) {
                             case "1" -> {
@@ -163,8 +160,6 @@ public class test {
                             }
                         }
 
-                        // JOptionPane.showMessageDialog(null, busString); Esto sirve es para mostrar
-                        // los buses
                         String asientoInput = JOptionPane.showInputDialog(busString + "\nIngrese el asiento");
                         String puntoPartida = terminal.getPuntoPartida();
                         String destino = terminal.getDestino();
@@ -176,7 +171,7 @@ public class test {
                             terminal.crearArchivoPasajero(nuevoPasajero);
                             JOptionPane.showMessageDialog(null, "Asiento reservado con éxito");
                             nAsiento[Integer.parseInt(asientoInput)] = "XX"; // Marca el asiento como ocupado en
-                                                                             // nAsiento
+                            pasajeros[Integer.parseInt(asientoInput)] = nuevoPasajero;                                                    // nAsiento
                         }
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(null, "DNI debe ser un número", "Error",
@@ -197,7 +192,7 @@ public class test {
                         JOptionPane.showMessageDialog(null, "Operación cancelada por el usuario");
                     } else {
                         try {
-                            asiento = Integer.parseInt(asientoInput);
+                            asiento = Integer.parseInt(asientoInput);  // en caso se ingresen letras 
                             // Continúa con tu lógica aquí
                         } catch (NumberFormatException e) {
                             JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido");
@@ -206,7 +201,7 @@ public class test {
 
                     // Validar el número de asiento
                     if (asiento < 0 || asiento >= pasajeros.length || pasajeros[asiento] == null) {
-                        JOptionPane.showMessageDialog(null, "Número de asiento inválido o asiento no reservado.");
+                        JOptionPane.showMessageDialog(null, "Número de asiento inválido");
                     } else {
                         // Acceder al Pasajero en el asiento especificado
                         Pasajero pasajeroAsiento = pasajeros[asiento];
@@ -219,7 +214,7 @@ public class test {
                                 .append("Destino: ").append(terminal.getDestino()).append("\n")
                                 .append("Asiento: ").append(pasajeroAsiento.getAsiento()).append("\n")
                                 .append("Precio: ").append(terminal.seleccionarPrecio());
-                        JOptionPane.showMessageDialog(null, boleto.toString());
+                        JOptionPane.showMessageDialog(null, boleto);
 
                         int respuesta = JOptionPane.showConfirmDialog(null, "Desea continuar?", "Confirmación",
                                 JOptionPane.YES_NO_OPTION);
@@ -228,16 +223,16 @@ public class test {
                         }
                     }
                 }
-                case 3 -> {
+                case 3 -> {   // Imprime el bus con los asientos ocupados y vacios
 
                     busString = String.format(bus, (Object[]) nAsiento);
                     JOptionPane.showMessageDialog(null, busString);
                 }
-                case 4 -> {
+                case 4 -> {   
                     try {
-                        File folder = new File("pasajes/");
-                        File[] listOfFiles = folder.listFiles();
-                        StringBuilder fileList = new StringBuilder();
+                        File folder = new File("Trabajo_Final/Pasajes/");  //crea el directorio pasajes
+                        File[] listOfFiles = folder.listFiles();                    //genera una lista de archivos
+                        StringBuilder fileList = new StringBuilder();               // crea un string builder con los nombres de los archivos
 
                         if (listOfFiles != null) {
                             for (File file : listOfFiles) {
@@ -250,8 +245,8 @@ public class test {
                         }
 
                         String asiento = JOptionPane.showInputDialog(
-                                fileList.toString() + "Ingrese numero de su pasaje:");
-                        String fileName = "pasajes/" + asiento + ".txt";
+                                fileList + "Ingrese numero de su pasaje:");
+                        String fileName = "Trabajo_Final/Pasajes/" + asiento + ".txt";
                         String nombre = null;
                         String apellidos = null;
                         String dni = null;
@@ -292,8 +287,8 @@ public class test {
 
                                 if (nuevoPasajero != null) {
                                     terminal.registrarViaje(puntoPartida, destino, fechaVenta.toString()); // Registra
-                                                                                                           // el
-                                                                                                           // viaje
+                                                                                                // el
+                                                                                                // viaje
                                     precio = terminal.seleccionarPrecio(); // Selecciona el precio
                                     JOptionPane.showMessageDialog(null,
                                             "Pasajero registrado con éxito.\n" + "fechaVenta: "
@@ -314,9 +309,7 @@ public class test {
 
                     } catch (NullPointerException e) {
                         JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage());
-                    } finally {
-                        // Add your code here if needed
-                    }
+                    } 
                 }
                 case 5 -> {
 
@@ -330,4 +323,4 @@ public class test {
 
     }
 
-}
+} // The end

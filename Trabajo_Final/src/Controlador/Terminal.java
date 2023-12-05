@@ -4,15 +4,15 @@
  */
 package Controlador;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.File;  // Permite ubicar el archivo dentro de nuestro codigo
+import java.io.FileWriter;  // Permite escribir en el archivo
+import java.io.IOException;  // Permite manejar excepciones
+import java.time.LocalDateTime;   // Permite manejar fechas
+import java.time.format.DateTimeFormatter;   // Permite dar formato a las fechas
 
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;   // Permite mostrar mensajes en pantalla
 
-import Modelo.Pasajero;
+import Modelo.Pasajero;   // Importa la clase Pasajero del paquete Modelo
 
 /**
  *
@@ -20,7 +20,7 @@ import Modelo.Pasajero;
  */
 public class Terminal {
     private Pasajero[] pasajeros = new Pasajero[48]; // objeto como atributo de otro objeto
-    // arreglo de objetos
+                                                    // arreglo de objetos
     private String puntoPartida;
     private String destino;
     private String fechaPartida;
@@ -57,11 +57,13 @@ public class Terminal {
         this.fechaPartida = fechaPartida;
     }
 
+    //metodos(Funciones y Procedimientos)
+
     public Pasajero crearPasajero(String nombre, String apellidos, String dni, String asiento, String puntoPartida,
             String destino) {
-        if (nombre == null || apellidos == null || dni == null || asiento == null || puntoPartida == null
+        if (nombre == null || apellidos == null || dni == null || asiento == null || puntoPartida == null  // verifica que los datos no sean null
                 || destino == null) {
-            throw new IllegalArgumentException("Los datos del pasajero no pueden ser null");
+            throw new IllegalArgumentException("Los datos del pasajero no pueden ser null");  // lanza una excepcion
         }
 
         int numeroAsiento = Integer.parseInt(asiento); // verifica que el asiento este dentro de los parametros
@@ -94,9 +96,9 @@ public class Terminal {
         do {
             asiento = Integer.parseInt(nuevoPasajero.getAsiento());
             pasaje = String.format("%02d", asiento);
-        } while (new File("Pasajes/" + pasaje + ".txt").exists());
+        } while (new File("Trabajo_Final/Pasajes/" + pasaje + ".txt").exists());
 
-        File dir = new File("Pasajes/");
+        File dir = new File("Trabajo_Final/Pasajes/");
         if (!dir.exists()) {
             dir.mkdirs();
         }
